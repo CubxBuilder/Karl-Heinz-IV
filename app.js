@@ -31,7 +31,26 @@ const capsSprueche = [
     "Geh weida, reg di ab! Trink a Maß, dann wirst wieder ruhiger!",
     "Sakra, musst du so brülln? Davo werd dei Schmarrn a ned g’scheiter!",
     "Hoid amoi de Luft o! Wer so schreit, hat eh koane Argumente mehr!",
-    "Ja kruzitürken, etz is aber moi guad mit dem Gebrüll hier!"
+    "Ja kruzitürken, etz is aber moi guad mit dem Gebrüll hier!",
+    "Himmiseidank, etz hoid doch amoi de Finger still! Des G'schrei liest ja koana freiwillig!",
+    "Etz is aber a Ruh! I bin ja ned schwerhörig, bloß weil i alt bin!",
+    "Ja bist du denn vom Wuiderer bissen? Schreib g'fälligst normal, du Dampfplauderer!",
+    "Samma, brennt dir der Huat? De Tastatur is zum Tippen da, ned zum Draufhaun!",
+    "Mei, so a G'schrei... bist du auf da Wiesn aufgwachsen oder was?",
+    "I glab, dir ham's ins Hirn g'regnet! Schreib leiser, i krieg ja Kopfweh!",
+    "G'hert des etz zum guten Ton bei de Jungen, dass ma ois so aufblosn muss?",
+    "Sakrament! Mäßig di, sonst sperr i di in den Saupreißn-Modus!",
+    "Host du koan Anstand g'lernt? Ma brüllt ned so rum in meim Haus!",
+    "Ja kruzifix, etz lass amoi den Dampf ab! Des hoid ja koa Kuh auf da Weide aus!",
+    "Hoid de Bappn! Wer so laut schreibt, hat meistens eh nix G'scheits zum Sogn!",
+    "Sakra, etz fangt der scho wieder an! Bist du a kleiner Giftzwerg oder was?",
+    "Mei Liaber, wennst so weitermachst, zieh i dir d'Lederhosn über d'Ohrn!",
+    "Geh weida, des G'schrei is ja zum Davalaffa! Benimm di amoi!",
+    "Was is’n des für a Tonart? Hier drin werd g'fälligst g'sittet g'redt!",
+    "Du Zipfeklatscher, moanst du wirklich, i liest des eher, wennst so rumblärrst?",
+    "Etz langts aber! I hab scho g'hört, dass du da bist, des musst ned so rausschreia!",
+    "Ja pfiat di Gott, was für a Lärm! Host du dei Kinderstube im Bierzelt g'habt?",
+    "Heit is wieder schlimm mit dir... etz fahr die Kralln ei und schreib normal!"
 ];
 const gibSpruch = (liste) => liste[Math.floor(Math.random() * liste.length)];
 
