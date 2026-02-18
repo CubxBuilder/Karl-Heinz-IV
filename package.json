@@ -1,0 +1,15 @@
+{
+  "name": "karl-heinz-iv",
+  "version": "1.0.0",
+  "description": "Bayerischer Discord Bot",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.14.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
