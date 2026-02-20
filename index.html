@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karl Heinz IV – Der bayerische Discord-Wächter</title>
+    <style>
+        :root {
+            --primary: #0056b3;
+            --secondary: #f6f8fa;
+            --text: #24292f;
+            --white: #ffffff;
+        }
+        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text); margin: 0; padding: 0; background-color: var(--secondary); display: flex; flex-direction: column; min-height: 100vh; }
+        header { background: var(--white); border-bottom: 1px solid #d0d7de; padding: 60px 20px; text-align: center; }
+        .avatar { width: 120px; height: 120px; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        h1 { margin: 10px 0; color: var(--primary); font-size: 2.5em; }
+        .tagline { font-size: 1.2em; color: #57606a; margin-bottom: 30px; font-style: italic; }
+        .cta-container { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 20px; }
+        .btn { padding: 12px 25px; border-radius: 6px; text-decoration: none; font-weight: bold; transition: all 0.2s; display: inline-flex; align-items: center; }
+        .btn-primary { background-color: var(--primary); color: var(--white); }
+        .btn-primary:hover { background-color: #004494; transform: translateY(-2px); }
+        .btn-secondary { background-color: var(--white); color: var(--primary); border: 1px solid var(--primary); }
+        .btn-secondary:hover { background-color: #f0f7ff; transform: translateY(-2px); }
+        
+        main { max-width: 800px; margin: 40px auto; padding: 0 20px; flex-grow: 1; }
+        .features { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+        .feature-card { background: var(--white); padding: 20px; border-radius: 8px; border: 1px solid #d0d7de; }
+        .feature-card h3 { margin-top: 0; color: var(--primary); }
+
+        footer { background: var(--white); border-top: 1px solid #d0d7de; padding: 30px 20px; text-align: center; font-size: 0.9em; }
+        .footer-links { margin-bottom: 15px; }
+        .footer-links a { color: var(--primary); text-decoration: none; margin: 0 10px; }
+        .footer-links a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="https://cdn.discordapp.com" alt="Karl Heinz IV Avatar" class="avatar">
+        <h1>Karl Heinz IV</h1>
+        <p class="tagline">"Karl Heinz schläft ned, er wacht!"</p>
+        
+        <div class="cta-container">
+            <a href="https://discord.com/oauth2/authorize?client_id=1473756570319065343&permissions=68608&integration_type=0&scope=applications.commands+bot" class="btn btn-primary" target="_blank">Bot einladen</a>
+            <a href="https://discord.gg/t3etc93anq" class="btn btn-secondary" target="_blank">Support Server</a>
+            <a href="https://github.com/CubxBuilder/Karl-Heinz-IV" class="btn btn-secondary" target="_blank">GitHub Code</a>
+        </div>
+    </header>
+
+    <main>
+        <h2>Über Karl Heinz IV</h2>
+        <p>Karl Heinz IV ist kein gewöhnlicher Discord-Bot. Er ist ein digitaler Wächter mit bayerischer Seele, der auf Ihrem Server für Ruhe und eine gepflegte Gesprächskultur sorgt. Ohne Schnickschnack, dafür mit klaren Ansagen.</p>
+
+        <div class="features">
+            <div class="feature-card">
+                <h3>🌙 Nachtruhe</h3>
+                <p>Von 22:00 bis 06:00 Uhr achtet Karl Heinz penibel darauf, dass niemand die Nachtruhe stört. Wer zu viel schreibt, wird ins Bett geschickt.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🚫 Caps-Lock Schutz</h3>
+                <p>Digitales Schreien wird nicht geduldet. Karl Heinz erkennt Nachrichten mit übermäßig vielen Großbuchstaben und regelt das auf bayerische Art.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="terms-of-use.html">Nutzungsbedingungen</a> | 
+            <a href="privacy-policy.html">Datenschutzerklärung</a>
+        </div>
+        <p>© 2026 Fabian Lehradt. Lizenziert unter CC BY-NC 4.0.</p>
+    </footer>
+
+</body>
+</html>
