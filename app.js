@@ -1,17 +1,13 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-
-// Webserver Setup für die statischen Seiten
 http.createServer((req, res) => {
     let filePath = '.' + req.url;
     if (filePath === './') filePath = './index.html';
     if (filePath === './terms-of-use') filePath = './terms-of-use.html';
     if (filePath === './privacy-policy') filePath = './privacy-policy.html';
-
     const extname = path.extname(filePath);
     let contentType = 'text/html';
-
     fs.readFile(filePath, (error, content) => {
         if (error) {
             if (error.code == 'ENOENT') {
@@ -29,8 +25,6 @@ http.createServer((req, res) => {
 }).listen(process.env.PORT || 3000, () => {
     console.log("Karl Heinz Web-Wacht läuft auf Port " + (process.env.PORT || 3000));
 });
-
-// Discord Bot Setup
 const { Client, GatewayIntentBits } = require('discord.js');
 const client = new Client({ 
     intents: [
@@ -39,10 +33,8 @@ const client = new Client({
         GatewayIntentBits.MessageContent
     ] 
 });
-
 const nachtZaehler = new Map();
 const hatSchonMeckerBekommen = new Set();
-
 const nachtSprueche = [
     "Himmisakra, schleich di ins Bett! Warum bist’n du no auf? Es is scho längst Schofnszeit, du Hanswurscht!",
     "Ja sakra, brennt bei dir no Licht? Ab in d'Falle, bevor i grantig werd!",
@@ -55,7 +47,6 @@ const nachtSprueche = [
     "Heit gibt’s koa Gaudi mehr. Pack di, sunst hol i an Besn raus!",
     "Kruzifix, es is Nacht! Ruah is etz aufm Server, sonst scheppert’s!"
 ];
-
 const capsSprueche = [
     "Sakradi, etz fahr halt mal wieder runter! Was fluchst’n so rum? Des holds ja im Kopf ned aus!",
     "Schrei mi ned so an, du Rotzlöffel! I steh direkt vor dir!",
@@ -87,9 +78,7 @@ const capsSprueche = [
     "Ja pfiat di Gott, was für a Lärm! Host du dei Kinderstube im Bierzelt g'habt?",
     "Heit is wieder schlimm mit dir... etz fahr die Kralln ei und schreib normal!"
 ];
-
 const gibSpruch = (liste) => liste[Math.floor(Math.random() * liste.length)];
-
 setInterval(() => {
     const jetzt = new Date();
     if (jetzt.getHours() === 6 && jetzt.getMinutes() === 0) {
@@ -98,12 +87,10 @@ setInterval(() => {
         console.log("Karl Heinz hat de Listen g'leert. Auf ein Neues!");
     }
 }, 60000);
-
 client.on('messageCreate', async (message) => {
     if (message.author.bot) return;
     const jetzt = new Date().getHours();
     const userId = message.author.id;
-
     if (jetzt >= 22 || jetzt < 6) {
         if (!hatSchonMeckerBekommen.has(userId)) {
             let count = (nachtZaehler.get(userId) || 0) + 1;
@@ -115,7 +102,6 @@ client.on('messageCreate', async (message) => {
             }
         }
     }
-
     const buchstaben = message.content.replace(/[^a-zA-ZäöüÄÖÜß]/g, "");
     const LOG_CHANNEL_ID = "1423413348220796991";
     if (buchstaben.length > 4) { 
@@ -140,5 +126,4 @@ client.on('messageCreate', async (message) => {
         }
     }
 });
-
 client.login(process.env.BOT_TOKEN);
