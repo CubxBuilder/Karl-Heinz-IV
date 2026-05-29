@@ -104,7 +104,6 @@ client.on('messageCreate', async (message) => {
         }
     }
     const buchstaben = message.content.replace(/[^a-zA-ZäöüÄÖÜß]/g, "");
-    const LOG_CHANNEL_ID = "1423413348220796991";
     if (buchstaben.length > 4) { 
         const grossBuchstaben = buchstaben.split("").filter(c => c === c.toUpperCase() && c !== c.toLowerCase()).length;
         if (grossBuchstaben / buchstaben.length >= 0.8) {
@@ -113,16 +112,9 @@ client.on('messageCreate', async (message) => {
                 if (message.member.moderatable) {
                     await message.member.timeout(60 * 1000, "Zu hoher Caps-Anteil");
                     const logChannel = await message.guild.channels.fetch(LOG_CHANNEL_ID);
-                    if (logChannel) {
-                        await logChannel.send(`🔇 **Timeout**: ${message.author.tag} (60s) wegen Caps-Spam.`);
-                    }
                 }
             } catch (error) {
                 console.error("Timeout konnte nicht gesetzt werden:", error);
-                const logChannel = await message.guild.channels.fetch(LOG_CHANNEL_ID).catch(() => null);
-                if (logChannel) {
-                    await logChannel.send(`⚠️ Fehler beim Timeout für ${message.author.tag}: ${error.message}`);
-                }
             } 
         }
     }
