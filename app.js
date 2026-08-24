@@ -15,7 +15,7 @@ http.createServer((req, res) => {
     if (filePath === './') filePath = './index.html';
     if (filePath === './terms-of-use') filePath = './terms-of-use.html';
     if (filePath === './privacy-policy') filePath = './privacy-policy.html';
-    
+
     fs.readFile(filePath, (error, content) => {
         if (error) {
             if (error.code == 'ENOENT') {
@@ -34,13 +34,13 @@ http.createServer((req, res) => {
     console.log("Karl Heinz Web-Wacht läuft auf Port " + (process.env.PORT || 3000));
 });
 
-const client = new Client({ 
+const client = new Client({
     intents: [
-        GatewayIntentBits.Guilds, 
-        GatewayIntentBits.GuildMessages, 
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
         GatewayIntentBits.MessageContent,
         GatewayIntentBits.GuildMembers
-    ] 
+    ]
 });
 
 const cacheNachtZaehler = new Map();
@@ -56,7 +56,7 @@ const ladeServerConfig = (guildId) => {
     if (fs.existsSync(filePfad)) {
         return JSON.parse(fs.readFileSync(filePfad, 'utf-8'));
     }
-    
+
     const neueConfig = {
         language: configTemplate.language,
         night_start: configTemplate.night_start,
@@ -71,7 +71,7 @@ const ladeServerConfig = (guildId) => {
             caps: configTemplate.phrases[configTemplate.language].caps
         }
     };
-    
+
     spechereServerConfig(guildId, neueConfig);
     return neueConfig;
 };
@@ -215,9 +215,11 @@ const baueLangMenue = (sCfg, menuAuthorId) => {
                        .setStyle(ButtonStyle.Secondary));
     return { embeds: [embed], components: [row1, row2] };
 };
+
 client.once('ready', () => {
     console.log("Karl Heinz ready on discord.");
 });
+
 setInterval(() => {
     const jetzt = new Date();
     if (jetzt.getHours() === 6 && jetzt.getMinutes() === 0) {
@@ -225,6 +227,7 @@ setInterval(() => {
         cacheHatSchonMecker.clear();
     }
 }, 60000);
+
 client.on('messageCreate', async (message) => {
     if (message.author.bot || !message.guild) return;
     const guildId = message.guild.id;
@@ -274,7 +277,7 @@ client.on('messageCreate', async (message) => {
         const tatsaechlichProzent = (grossBuchstaben / nurBuchstaben.length) * 100;
         if (tatsaechlichProzent >= sCfg.caps_percentage) {
             if (sCfg.punishment_caps_delete) {
-                try { 
+                try {
                     await message.delete();
                 } catch(e) {}
             }
@@ -289,6 +292,7 @@ client.on('messageCreate', async (message) => {
         }
     }
 });
+
 client.on('interactionCreate', async (interaction) => {
     if (!interaction.guildId) return;
     const guildId = interaction.guildId;
@@ -333,7 +337,17 @@ client.on('interactionCreate', async (interaction) => {
             spechereServerConfig(guildId, sCfg);
             return interaction.update(baueHauptmenue(sCfg, menuAuthorId));
         }
-        if (interaction.isButton() && interaction.customId.includes('modal')) {
+        const modalAuslöser = [
+            'cfg_time_change_',
+            'cfg_sens_change_',
+            'cfg_phr_add_night_',
+            'cfg_phr_add_caps_',
+            'cfg_phr_rem_night_',
+            'cfg_phr_rem_caps_',
+            'cfg_pun_modal_capsto_',
+            'cfg_pun_modal_nightto_'
+        ];
+        if (interaction.isButton() && modalAuslöser.some(p => interaction.customId.startsWith(p))) {
             let modal;
             if (interaction.customId.startsWith('cfg_time_change_')) {
                 modal = new ModalBuilder().setCustomId(`mod_times_${menuAuthorId}`).setTitle(ui.modal_times_title).addComponents(new ActionRowBuilder().addComponents(new TextInputBuilder().setCustomId('start').setLabel(ui.modal_start_lbl).setValue(String(sCfg.night_start)).setStyle(TextInputStyle.Short)),new ActionRowBuilder().addComponents(new TextInputBuilder().setCustomId('end').setLabel(ui.modal_end_lbl).setValue(String(sCfg.night_end)).setStyle(TextInputStyle.Short)));
@@ -356,6 +370,12 @@ client.on('interactionCreate', async (interaction) => {
     if (interaction.isModalSubmit()) {
         const teile = interaction.customId.split('_');
         const menuAuthorId = teile[teile.length - 1];
+        if (interaction.user.id !== menuAuthorId) {
+            return interaction.reply({ content: ui.only_author, ephemeral: true });
+        }
+        if (!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) {
+            return interaction.reply({ content: ui.no_perm, ephemeral: true });
+        }
         if (interaction.customId.startsWith('mod_times_')) {
             const start = parseInt(interaction.fields.getTextInputValue('start'));
             const end = parseInt(interaction.fields.getTextInputValue('end'));
@@ -373,7 +393,8 @@ client.on('interactionCreate', async (interaction) => {
         if (interaction.customId.startsWith('mod_add_')) {
             const typ = teile[2];
             const txt = interaction.fields.getTextInputValue('txt');
-            if (txt) sCfg.custom_phrases[typ].push(txt);spechereServerConfig(guildId, sCfg);
+            if (txt) sCfg.custom_phrases[typ].push(txt);
+            spechereServerConfig(guildId, sCfg);
             return interaction.update(bauePhrasesMenue(sCfg, menuAuthorId));
         }
         if (interaction.customId.startsWith('mod_rem_')) {
@@ -390,7 +411,8 @@ client.on('interactionCreate', async (interaction) => {
             if (!isNaN(min) && min >= 0) sCfg.punishment_caps_timeout = min;
             spechereServerConfig(guildId, sCfg);
             return interaction.update(bauePunishMenue(sCfg, menuAuthorId));
-        }if (interaction.customId.startsWith('mod_nightto_')) {
+        }
+        if (interaction.customId.startsWith('mod_nightto_')) {
             const min = parseInt(interaction.fields.getTextInputValue('min'));
             const lim = parseInt(interaction.fields.getTextInputValue('lim'));
             if (!isNaN(min) && min >= 0) sCfg.punishment_night_timeout = min;
@@ -400,4 +422,5 @@ client.on('interactionCreate', async (interaction) => {
         }
     }
 });
+
 client.login(process.env.BOT_TOKEN);
