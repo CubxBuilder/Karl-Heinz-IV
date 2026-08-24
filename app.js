@@ -86,7 +86,7 @@ const baueHauptmenue = (sCfg, menuAuthorId) => {
     const embed = new EmbedBuilder()
         .setTitle(ui.main_title)
         .setDescription(ui.main_desc)
-        .setColor(0x3498db)
+        .setColor(0xffffff)
         .addFields(
             { name: "Language / Sprache", value: `\`${sCfg.language}\``, inline: true },
             { name: "Night / Nachtruhe", value: `\`${sCfg.night_start}:00\` - \`${sCfg.night_end}:00\``, inline: true },
@@ -97,13 +97,13 @@ const baueHauptmenue = (sCfg, menuAuthorId) => {
         );
 
     const row1 = new ActionRowBuilder().addComponents(
-        new ButtonBuilder().setCustomId(`cfg_menu_phrases_${menuAuthorId}`).setLabel(ui.btn_phrases).setStyle(ButtonStyle.Primary),
-        new ButtonBuilder().setCustomId(`cfg_menu_times_${menuAuthorId}`).setLabel(ui.btn_times).setStyle(ButtonStyle.Primary),
-        new ButtonBuilder().setCustomId(`cfg_menu_sens_${menuAuthorId}`).setLabel(ui.btn_sens).setStyle(ButtonStyle.Primary)
+        new ButtonBuilder().setCustomId(`cfg_menu_phrases_${menuAuthorId}`).setLabel(ui.btn_phrases).setStyle(ButtonStyle.Secondary),
+        new ButtonBuilder().setCustomId(`cfg_menu_times_${menuAuthorId}`).setLabel(ui.btn_times).setStyle(ButtonStyle.Secondary),
+        new ButtonBuilder().setCustomId(`cfg_menu_sens_${menuAuthorId}`).setLabel(ui.btn_sens).setStyle(ButtonStyle.Secondary)
     );
     const row2 = new ActionRowBuilder().addComponents(
-        new ButtonBuilder().setCustomId(`cfg_menu_punish_${menuAuthorId}`).setLabel(ui.btn_punish).setStyle(ButtonStyle.Primary),
-        new ButtonBuilder().setCustomId(`cfg_menu_lang_${menuAuthorId}`).setLabel(ui.btn_lang).setStyle(ButtonStyle.Primary),
+        new ButtonBuilder().setCustomId(`cfg_menu_punish_${menuAuthorId}`).setLabel(ui.btn_punish).setStyle(ButtonStyle.Secondary),
+        new ButtonBuilder().setCustomId(`cfg_menu_lang_${menuAuthorId}`).setLabel(ui.btn_lang).setStyle(ButtonStyle.Secondary),
         new ButtonBuilder().setCustomId(`cfg_menu_close_${menuAuthorId}`).setLabel(ui.btn_close).setStyle(ButtonStyle.Danger)
     );
 
@@ -115,7 +115,7 @@ const bauePhrasesMenue = (sCfg, menuAuthorId) => {
     const embed = new EmbedBuilder()
         .setTitle(ui.phrases_title)
         .setDescription(ui.phrases_desc)
-        .setColor(0x2ecc71);
+        .setColor(0xffffff);
 
     let nightText = sCfg.custom_phrases.night.map((s, idx) => `\`[${idx}]\` ${s}`).join('\n') || "None";
     let capsText = sCfg.custom_phrases.caps.map((s, idx) => `\`[${idx}]\` ${s}`).join('\n') || "None";
@@ -126,13 +126,13 @@ const bauePhrasesMenue = (sCfg, menuAuthorId) => {
     );
 
     const row1 = new ActionRowBuilder().addComponents(
-        new ButtonBuilder().setCustomId(`cfg_phr_add_night_${menuAuthorId}`).setLabel(ui.btn_add_night).setStyle(ButtonStyle.Success),
-        new ButtonBuilder().setCustomId(`cfg_phr_add_caps_${menuAuthorId}`).setLabel(ui.btn_add_caps).setStyle(ButtonStyle.Success),
-        new ButtonBuilder().setCustomId(`cfg_phr_rem_night_${menuAuthorId}`).setLabel(ui.btn_rem_night).setStyle(ButtonStyle.Danger),
-        new ButtonBuilder().setCustomId(`cfg_phr_rem_caps_${menuAuthorId}`).setLabel(ui.btn_rem_caps).setStyle(ButtonStyle.Danger)
+        new ButtonBuilder().setCustomId(`cfg_phr_add_night_${menuAuthorId}`).setLabel(ui.btn_add_night).setStyle(ButtonStyle.Secondary),
+        new ButtonBuilder().setCustomId(`cfg_phr_add_caps_${menuAuthorId}`).setLabel(ui.btn_add_caps).setStyle(ButtonStyle.Secondary),
+        new ButtonBuilder().setCustomId(`cfg_phr_rem_night_${menuAuthorId}`).setLabel(ui.btn_rem_night).setStyle(ButtonStyle.Secondary),
+        new ButtonBuilder().setCustomId(`cfg_phr_rem_caps_${menuAuthorId}`).setLabel(ui.btn_rem_caps).setStyle(ButtonStyle.Secondary)
     );
     const row2 = new ActionRowBuilder().addComponents(
-        new ButtonBuilder().setCustomId(`cfg_back_${menuAuthorId}`).setLabel(ui.btn_back).setStyle(ButtonStyle.Secondary)
+        new ButtonBuilder().setCustomId(`cfg_back_${menuAuthorId}`).setLabel(ui.btn_back).setStyle(ButtonStyle.Danger)
     );
 
     return { embeds: [embed], components: [row1, row2] };
@@ -143,11 +143,11 @@ const baueTimesMenue = (sCfg, menuAuthorId) => {
     const embed = new EmbedBuilder()
         .setTitle(ui.times_title)
         .setDescription(`Current Night Watch: \`${sCfg.night_start}:00\` to \`${sCfg.night_end}:00\``)
-        .setColor(0x9b59b6);
+        .setColor(0xffffff);
 
     const row = new ActionRowBuilder().addComponents(
-        new ButtonBuilder().setCustomId(`cfg_time_change_${menuAuthorId}`).setLabel(ui.btn_change_times).setStyle(ButtonStyle.Success),
-        new ButtonBuilder().setCustomId(`cfg_back_${menuAuthorId}`).setLabel(ui.btn_back).setStyle(ButtonStyle.Secondary)
+        new ButtonBuilder().setCustomId(`cfg_time_change_${menuAuthorId}`).setLabel(ui.btn_change_times).setStyle(ButtonStyle.Secondary),
+        new ButtonBuilder().setCustomId(`cfg_back_${menuAuthorId}`).setLabel(ui.btn_back).setStyle(ButtonStyle.Danger)
     );
 
     return { embeds: [embed], components: [row] };
@@ -158,11 +158,11 @@ const baueSensMenue = (sCfg, menuAuthorId) => {
     const embed = new EmbedBuilder()
         .setTitle(ui.sens_title)
         .setDescription(`Current Caps Trigger Percentage: \`${sCfg.caps_percentage}%\``)
-        .setColor(0xe67e22);
+        .setColor(0xffffff);
 
     const row = new ActionRowBuilder().addComponents(
-        new ButtonBuilder().setCustomId(`cfg_sens_change_${menuAuthorId}`).setLabel(ui.btn_change_sens).setStyle(ButtonStyle.Success),
-        new ButtonBuilder().setCustomId(`cfg_back_${menuAuthorId}`).setLabel(ui.btn_back).setStyle(ButtonStyle.Secondary)
+        new ButtonBuilder().setCustomId(`cfg_sens_change_${menuAuthorId}`).setLabel(ui.btn_change_sens).setStyle(ButtonStyle.Secondary),
+        new ButtonBuilder().setCustomId(`cfg_back_${menuAuthorId}`).setLabel(ui.btn_back).setStyle(ButtonStyle.Danger)
     );
 
     return { embeds: [embed], components: [row] };
@@ -172,7 +172,7 @@ const bauePunishMenue = (sCfg, menuAuthorId) => {
     const ui = configTemplate.ui[sCfg.language];
     const embed = new EmbedBuilder()
         .setTitle(ui.punish_title)
-        .setColor(0xe74c3c)
+        .setColor(0xffffff)
         .addFields(
             { name: "Delete Caps Messages", value: sCfg.punishment_caps_delete ? "✅ Enabled" : "❌ Disabled" },
             { name: "Caps Timeout", value: sCfg.punishment_caps_timeout > 0 ? `⏳ ${sCfg.punishment_caps_timeout} min` : "❌ Disabled" },
@@ -180,12 +180,12 @@ const bauePunishMenue = (sCfg, menuAuthorId) => {
         );
 
     const row1 = new ActionRowBuilder().addComponents(
-        new ButtonBuilder().setCustomId(`cfg_pun_toggle_del_${menuAuthorId}`).setLabel(ui.btn_toggle_caps_del).setStyle(sCfg.punishment_caps_delete ? ButtonStyle.Success : ButtonStyle.Danger),
-        new ButtonBuilder().setCustomId(`cfg_pun_modal_capsto_${menuAuthorId}`).setLabel(ui.btn_toggle_caps_to).setStyle(ButtonStyle.Primary),
-        new ButtonBuilder().setCustomId(`cfg_pun_modal_nightto_${menuAuthorId}`).setLabel(ui.btn_toggle_night_to).setStyle(ButtonStyle.Primary)
+        new ButtonBuilder().setCustomId(`cfg_pun_toggle_del_${menuAuthorId}`).setLabel(ui.btn_toggle_caps_del).setStyle(sCfg.punishment_caps_delete ? ButtonStyle.Secondary : ButtonStyle.Secondary),
+        new ButtonBuilder().setCustomId(`cfg_pun_modal_capsto_${menuAuthorId}`).setLabel(ui.btn_toggle_caps_to).setStyle(ButtonStyle.Secondary),
+        new ButtonBuilder().setCustomId(`cfg_pun_modal_nightto_${menuAuthorId}`).setLabel(ui.btn_toggle_night_to).setStyle(ButtonStyle.Secondary)
     );
     const row2 = new ActionRowBuilder().addComponents(
-        new ButtonBuilder().setCustomId(`cfg_back_${menuAuthorId}`).setLabel(ui.btn_back).setStyle(ButtonStyle.Secondary)
+        new ButtonBuilder().setCustomId(`cfg_back_${menuAuthorId}`).setLabel(ui.btn_back).setStyle(ButtonStyle.Danger)
     );
 
     return { embeds: [embed], components: [row1, row2] };
@@ -196,7 +196,7 @@ const baueLangMenue = (sCfg, menuAuthorId) => {
     const embed = new EmbedBuilder()
         .setTitle(ui.lang_title)
         .setDescription(`Current Language: \`${sCfg.language}\``)
-        .setColor(0x34495e);
+        .setColor(0xffffff);
 
     const select = new StringSelectMenuBuilder()
         .setCustomId(`cfg_lang_select_${menuAuthorId}`)
