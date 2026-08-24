@@ -207,7 +207,11 @@ const baueLangMenue = (sCfg, menuAuthorId) => {
         );
 
     const row1 = new ActionRowBuilder().addComponents(select);
-    const row2 = new ActionRowBuilder().addComponents(new ButtonBuilder().setCustomId(cfg_back_${menuAuthorId}).setLabel(ui.btn_back).setStyle(ButtonStyle.Secondary));
+    const row2 = new ActionRowBuilder()
+        .addComponents(new ButtonBuilder()
+                       .setCustomId(`cfg_back_${menuAuthorId}`)
+                       .setLabel(ui.btn_back)
+                       .setStyle(ButtonStyle.Secondary));
     return { embeds: [embed], components: [row1, row2] };
 };
 client.once('ready', () => {
