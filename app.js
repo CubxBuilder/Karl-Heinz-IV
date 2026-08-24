@@ -248,7 +248,7 @@ client.on('messageCreate', async (message) => {
         if (jetztStunde >= sCfg.night_start && jetztStunde < sCfg.night_end) istNacht = true;
     }
     if (istNacht) {
-        const cacheKey = ${guildId}_${userId};
+        const cacheKey = `${guildId}_${userId}`;
         if (!cacheHatSchonMecker.has(cacheKey)) {
             cacheHatSchonMecker.add(cacheKey);
             await message.reply(gibSpruch(spruchListeNight));
