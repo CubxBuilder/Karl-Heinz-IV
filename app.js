@@ -307,8 +307,11 @@ client.on('interactionCreate', async (interaction) => {
         if (!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) {
             return interaction.reply({ content: ui.no_perm, ephemeral: true });
         }
-        if (interaction.customId.startsWith('cfg_menu_phrases_') || interaction.customId.startsWith('cfg_back_')) {
+        if (interaction.customId.startsWith('cfg_menu_phrases_')) {
             return interaction.update(bauePhrasesMenue(sCfg, menuAuthorId));
+        }
+        if (interaction.customId.startsWith('cfg_back_')) {
+            return interaction.update(baueHauptmenue(sCfg, menuAuthorId));
         }
         if (interaction.customId.startsWith('cfg_menu_times_')) {
             return interaction.update(baueTimesMenue(sCfg, menuAuthorId));
