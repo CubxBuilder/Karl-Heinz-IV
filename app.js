@@ -1,5 +1,6 @@
 const http = require('http');
 const fs = require('fs');
+require('dotenv').config();
 const path = require('path');
 const { Client, GatewayIntentBits, PermissionFlagsBits, ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, StringSelectMenuBuilder, ModalBuilder, TextInputBuilder, TextInputStyle } = require('discord.js');
 const configTemplate = require('./server-config-template');
