@@ -281,7 +281,7 @@ client.on('messageCreate', async (message) => {
                     await message.delete();
                 } catch(e) {}
             }
-            await message.channel.send(`<@${userId}>, ${gibSpruch(spruchListeCaps)}`);
+            await message.reply(`${gibSpruch(spruchListeCaps)}`);
             if (sCfg.punishment_caps_timeout > 0) {
                 try {
                     if (message.member && message.member.moderatable) {
