@@ -1,1 +1,138 @@
-
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karl Heinz IV.</title>
+    <link rel="icon" href="icon.png">
+    <link rel="apple-touch-icon" href="icon.png">
+    <style>
+        :root {
+            --bg-color: #191919;
+            --card-bg: #424242;
+            --text-color: #f2f3f5;
+            --text-muted: #b5bac1;
+            --primary-color: #b2b2b2;
+            --primary-hover: #7f7f7f;
+            --secondary-color: #4f545c;
+            --secondary-hover: #686d73;
+            --accent-color: #ffffff;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+        .bot-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary-color);
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 12px rgba(88, 101, 242, 0.3);
+        }
+        h1 {
+            margin: 0 0 0.5rem 0;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        .tagline {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+        button {
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            width: 100%;
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+        .btn-invite {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .btn-invite:hover {
+            background-color: var(--primary-hover);
+        }
+        .btn-support {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        .btn-support:hover {
+            background-color: var(--secondary-hover);
+        }
+        .info {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 1.25rem;
+            border-radius: 8px;
+            text-align: left;
+            border-left: 4px solid var(--accent-color);
+        }
+        .info p {
+            margin: 0 0 0.75rem 0;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+        }
+        .info p:last-child {
+            margin-bottom: 0;
+        }
+        .info b {
+            color: var(--primary-color);
+            background-color: rgba(88, 101, 242, 0.1);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img class="bot-icon" src="icon.png" alt="Karl Heinz IV. Icon">
+        <h1>Karl Heinz IV.</h1>
+        <p class="tagline">Just an old man who wants some peace. Do not bother him!</p> 
+        <div class="buttons">
+            <button class="btn-invite" onclick="window.location.href='https://discord.com/oauth2/authorize?client_id=1473756570319065343&permissions=1374389602304&integration_type=0&scope=bot+applications.commands'">
+                Invite Bot
+            </button>
+            <button class="btn-support" onclick="window.location.href='https://discord.gg/NERE2UfDWk'">
+                Join Support-Server
+            </button>
+        </div>
+        <div class="info">
+            <p>Customize the bot to your needs with&nbsp;<b>.config</b></p> 
+            <p>Night-Time-Quite Mode</p>
+            <p>Customizable Messages</p>
+            <p>Reliabel Caps-Lock-Protection</p>
+        </div>
+    </div>
+</body>
+</html>
