@@ -13,8 +13,6 @@ if (!fs.existsSync(CONFIG_DIR)) {
 http.createServer((req, res) => {
     let filePath = '.' + req.url;
     if (filePath === './') filePath = './index.html';
-    if (filePath === './terms-of-use') filePath = './terms-of-use.html';
-    if (filePath === './privacy-policy') filePath = './privacy-policy.html';
 
     fs.readFile(filePath, (error, content) => {
         if (error) {
